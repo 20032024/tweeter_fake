@@ -3,33 +3,61 @@ import { Credential } from '../models/user/Credential'
 import { User } from '../models/user/User'
 import { Token } from '../models/user/Token'
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
+
+import {  map } from 'rxjs/operators';
+
+
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class UserService {
 
-  constructor() { }
+  apiURL = 'http://localhost:8080/';
+
+  constructor(
+    private http: HttpClient,
+  )
+  {
+
+  }
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin':'*'
+
+    })
+  }
+
+  errorMessage = "";
 
   postLogin(myCredential: Credential): Token {
 
-    console.log("email ... " + myCredential.email);
-    console.log("password ... " + myCredential.password);
+
+    const body = {
+             username: myCredential.email,
+             password : myCredential.password
+          };
+
+    console.log(body)
 
     var myToken = new Token();
 
-    // call fake api
-    if ( (myCredential.email == "adsoft@live.com.mx") &&
-	 (myCredential.password == "123"))
-    {
-       myToken.id = "0001";
-       myToken.user = "adsoft";
-       myToken.token = "gcp747844sdjksdkjsdkjds895850vb3";
-    }
-    else {
-       myToken.id = "0";
-       myToken.user = "bad credentials";
-       myToken.token = "";
-    }
+    this.http.post(this.apiURL + 'api/auth/signin', body, this.httpOptions)
+    .pipe(
+        catchError(this.handleError)
+    )
+    .subscribe( (data : any)  => {
+        console.log(data);
+        myToken.accessToken = data.accessToken;
+     })
+
 
     return myToken;
   }
@@ -186,5 +214,23 @@ console.log("email ... " + myUser.email);
     console.log('destroying token ... ' + token);
     return "" + istokenDestroyed;
   }
+
+
+ // Error handling
+
+  handleError(error : any) {
+    let errorMessage = '';
+    if(error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+ }
+
 
 }

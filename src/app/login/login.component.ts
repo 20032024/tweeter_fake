@@ -34,7 +34,7 @@ export class LoginComponent {
      this.myLogin = this.userService.postLogin(
         myCredential
        );
-     if (this.myLogin.token != "")
+     if (this.myLogin.accessToken != "")
         this.router.navigate(['/home']);
 
      console.log(this.myLogin);
