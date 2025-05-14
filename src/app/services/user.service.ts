@@ -37,7 +37,7 @@ export class UserService {
 
   errorMessage = "";
 
-  postLogin(myCredential: Credential): Token {
+  postLogin(myCredential: Credential) {
 
 
     const body = {
@@ -49,17 +49,18 @@ export class UserService {
 
     var myToken = new Token();
 
-    this.http.post(this.apiURL + 'api/auth/signin', body, this.httpOptions)
+    return this.http.post(this.apiURL + 'api/auth/signin', body, this.httpOptions)
     .pipe(
         catchError(this.handleError)
-    )
-    .subscribe( (data : any)  => {
+    );
+
+  /*  .subscribe( (data : any)  => {
         console.log(data);
         myToken.accessToken = data.accessToken;
      })
+*/
 
-
-    return myToken;
+   // return myToken;
   }
 
 
