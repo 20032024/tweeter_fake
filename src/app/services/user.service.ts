@@ -2,12 +2,9 @@ import { Injectable } from '@angular/core';
 import { Credential } from '../models/user/Credential'
 import { User } from '../models/user/User'
 import { Token } from '../models/user/Token'
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-
 import {  map } from 'rxjs/operators';
 
 
