@@ -14,6 +14,7 @@ import { HomeComponent } from './home/home.component';
 import {FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     ResetPasswordComponent,
     LandingPageComponent,
     TweetsComponent,
-    HomeComponent
+    HomeComponent,
+
   ],
   imports: [
     BrowserModule,
