@@ -1,25 +1,57 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,700');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap');
 
 body {
-   background : #2E9ce6;
-   padding: 3em;
-   font-family: 'Raleway', 'Arial';
-   color: #fff;
+  background-image: url('assets/gradii-1920x1080\ \(8\).png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: var(--font-family);
+  color: var(--text-green);
+  margin: 0;  /* Eliminar márgenes por defecto */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  display: flex;  /* Usar flexbox */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  font-family: 'Raleway', sans-serif; /* Usa la fuente importada */
 }
 
-ul {
-   list-style-type: none;
-   margin: 0 0 2em 0;
-   padding: 0;
+.welcome-container {
+  text-align: center;
+  max-width: 600px;
+  padding: 2em;
+  background: rgba(0, 0, 0, 0.6); /* Fondo oscuro para el contenido */
+  border-radius: 10px;
+  width: 100%; /* Asegura que el contenedor use todo el espacio disponible */
 }
 
-ul li {
-   display: inline;
-   margin-right: 30px;
+h1 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
 }
 
-a {
-   color: #0f0;
-   text-decoration: none;
+p {
+  font-size: 1.5em;
+  margin-bottom: 2em;
 }
 
+.buttons {
+  margin-top: 1em;
+}
+
+.button {
+  background-color: #fff;
+  color: #333;
+  font-size: 1.2em;
+  padding: 15px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+  background-color: #0f0;
+  color: white;
+}
