@@ -1,24 +1,90 @@
-<p>Welcome {{ username }}</p>
-
-
-<div class ="container color-ligth">
-
-    <div class = "col">
-
-      <form>
-        <input type="text" class="txt" name="item" placeholder="your tweet here..." [(ngModel)]= "tweetText">
-
-        <input type="submit" class ="btn" value="tweet" (click)="addTweet()">
-      </form>
+<div class="main-container">
+  <!-- Menú de hamburguesa -->
+  <div class="sidebar">
+    <button class="menu-btn" (click)="toggleMenu()">☰</button>
+    <div [class.abierto]="menuAbierto" class="menu-lateral">
+      <ul>
+        <li><a routerLink="/pagina-principal/categorias"> POSTRES </a></li>
+        <li><a href="#">Opción 2</a></li>
+      </ul>
     </div>
-
-    <div class = "col">
-       <p class="life-container" *ngFor="let tweet of tweets; let i = index">
-
-          {{tweet.id}} - {{tweet.tweet}}
-        </p>
-    </div>
-
-
-
   </div>
+
+  <!-- Contenedor principal -->
+  <div class="content">
+    <!-- Formulario de creación de tweet centrado -->
+    <div class="tweet-form-container">
+      <div class="tweet-form">
+        <form (ngSubmit)="addTweet()">
+          <input type="text" class="txt" name="tweetText" placeholder="Escribe tu tweet aquí..." [(ngModel)]="tweetText"
+            required />
+
+          <!-- Categoría del tweet -->
+          <label for="category">Categoría:</label>
+          <select name="category" [(ngModel)]="selectedCategory" required>
+            <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+          </select>
+
+          <!-- Nombre del postre -->
+          <label for="namePostre">Nombre del Postre:</label>
+          <input id="namePostre" name="namePostre" [(ngModel)]="tweetNamePostre"
+            placeholder="Escribe el nombre del postre" required />
+
+          <!-- Ingredientes -->
+          <label for="ingredientes">Ingredientes:</label>
+          <input id="ingredientes" name="ingredientes" [(ngModel)]="tweetIngredientes"
+            placeholder="Escribe los ingredientes" required />
+
+          <!-- Tipo de postre -->
+          <label for="tipoPostre">Tipo de Postre:</label>
+          <input id="tipoPostre" name="tipoPostre" [(ngModel)]="tweetTipoPostre" placeholder="Escribe el tipo de postre"
+            required />
+
+          <!-- Botón de submit -->
+          <button type="submit" class="btn">Tweet</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Mostrar Tweets -->
+    <div class="tweets-list">
+      <h3>Tweets sobre Postres</h3>
+      <div *ngFor="let tweet of tweets" class="tweet">
+        <p>{{ tweet.tweet }}</p>
+        <p><em>Postre: {{ tweet.namePostre }}</em></p>
+        <p><em>Ingredientes: {{ tweet.ingredientes }}</em></p>
+        <p><em>Tipo de postre: {{ tweet.tipoPostre }}</em></p>
+
+        <!-- Reacciones -->
+        <div class="reactions">
+          <button (click)="addReaction(tweet.id, 1)">Like</button>
+          <button (click)="addReaction(tweet.id, 2)">Love</button>
+          <button (click)="addReaction(tweet.id, 3)">Hate</button>
+          <button (click)="addReaction(tweet.id, 4)">Sad</button>
+          <button (click)="addReaction(tweet.id, 5)">Angry</button>
+        </div>
+
+        <!-- Comentarios -->
+        <div class="comments">
+          <h4>Comentarios</h4>
+          <div *ngIf="tweet.comentarios && tweet.comentarios.length > 0; else sinComentarios">
+            <div *ngFor="let comment of tweet.comentarios" class="comment">
+              <p><strong>{{ comment.user.username }}:</strong> {{ comment.content }}</p>
+              <p><em>{{ comment.fechaCreacion | date:'short' }}</em></p>
+            </div>
+          </div>
+          <ng-template #sinComentarios>
+            <p>No hay comentarios aún.</p>
+          </ng-template>
+        </div>
+
+        <!-- Agregar nuevo comentario -->
+        <div class="nuevo-comentario">
+          <input type="text" [(ngModel)]="tweet.nuevoComment" [name]="'comentario' + tweet.id"
+            placeholder="Escribe un comentario..." />
+          <button (click)="crearComentario(tweet)">Agregar Comentario</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

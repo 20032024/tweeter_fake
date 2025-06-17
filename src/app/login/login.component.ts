@@ -20,8 +20,8 @@ export class LoginComponent {
     )
     { }
 
-    email : String = "adsoft@live.com.mx";
-    password : String = "123";
+    email : String = "anderarturoluuna";
+    password : String = "ander123";
     myLogin = new Token();
 
     callLogin() {
@@ -55,8 +55,10 @@ export class LoginComponent {
 
 
   
-     if (this.myLogin.accessToken != "")
+    if (this.myLogin.accessToken != "")
         this.router.navigate(['/home']);
+
+    
 
      console.log(this.myLogin);
 

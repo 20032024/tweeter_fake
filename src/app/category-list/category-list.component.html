@@ -1,0 +1,19 @@
+<div class="categories-container">
+  <!-- Título fijo encima de las cards -->
+  <div class="titulo-seleccionar-categoria">
+    <h2>SELECCIONE UNA CATEGORÍA</h2>
+  </div>
+
+  <!-- Cards de categorías -->
+  <div *ngFor="let category of categories" class="category-card" (click)="showCategoryTitle(category.name)">
+    <img [src]="category.imageUrl" alt="Category Image" class="category-img" />
+    <div class="category-title">
+      <h3>{{ category.name }}</h3>
+    </div>
+  </div>
+</div>
+
+<!-- Título de la categoría seleccionada -->
+<div *ngIf="selectedCategory" class="selected-category-title">
+  <h2>Seleccionaste: {{ selectedCategory }}</h2>
+</div>
