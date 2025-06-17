@@ -10,7 +10,7 @@ import { StorageService } from "../services/storage.service";
 })
 export class CategoryService {
 
-  private apiUrl = 'http://localhost:8080/api/categories/'; // Asegúrate de que esta URL es la correcta
+  private apiUrl = 'https://springboot-postres-api.onrender.com/api/categories/'; // Asegúrate de que esta URL es la correcta
 
   constructor(private http: HttpClient) { }
 
@@ -30,7 +30,7 @@ export class CategoryService {
           // Asigna una imagen estática a cada categoría según su nombre
           switch (category.name.toLowerCase()) {
             case 'postres de chocolate':
-              category.imageUrl = '../../../category/postre-chocolate.jpg'; 
+              category.imageUrl = '../../../category/postre-chocolate.jpg';
               break;
             case 'postres de limón':
               category.imageUrl = '../../../category/postre-limon.webp';
@@ -42,7 +42,7 @@ export class CategoryService {
               category.imageUrl = '../../../category/postre-manzana.jpg';
               break;
             default:
-             // category.imageUrl = 'assets/default-category.jpg'; // Si no encuentra una categoría específica
+            // category.imageUrl = 'assets/default-category.jpg'; // Si no encuentra una categoría específica
           }
           return category;
         });

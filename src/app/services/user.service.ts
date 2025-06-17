@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators';
 
 export class UserService {
 
-  apiURL = 'http://localhost:8080/';
+  apiURL = 'https://springboot-postres-api.onrender.com/';
 
   constructor(
     private http: HttpClient,

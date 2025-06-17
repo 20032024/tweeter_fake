@@ -11,7 +11,7 @@ import { TweetCommentRequest } from '../models/comments/TweetComment';
 })
 export class TweetService {
 
-  apiURL = 'http://localhost:8080/';
+  apiURL = 'https://spring-boot-p-latest.onrender.com/';
   token: string = '';
 
   constructor(
