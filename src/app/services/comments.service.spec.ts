@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TweetService } from './tweet.service';
+import { CommentsService } from './comments.service';
 
-describe('TweetService', () => {
-  let service: TweetService;
+describe('CommentsService', () => {
+  let service: CommentsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(TweetService);
+    service = TestBed.inject(CommentsService);
   });
 
   it('should be created', () => {

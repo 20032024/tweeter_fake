@@ -5,7 +5,8 @@ body {
   margin: 0;
   font-family: 'Raleway', 'Arial';
   color: white;
- 
+  background-image: url('https://example.com/your-background-image.jpg');
+  /* Reemplaza por tu imagen de fondo */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -21,7 +22,8 @@ body {
   border-radius: 15px;
   width: 100%;
   max-width: 450px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
 }
 
 h1 {
@@ -54,7 +56,8 @@ input {
 }
 
 input:focus {
-  border-color: #007bff; /* Color del borde al hacer focus */
+  border-color: #007bff;
+  /* Color del borde al hacer focus */
   outline: none;
 }
 
@@ -70,7 +73,8 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3; /* Color más oscuro cuando se hace hover */
+  background-color: #0056b3;
+  /* Color más oscuro cuando se hace hover */
 }
 
 .forgot-password {

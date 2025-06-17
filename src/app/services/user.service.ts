@@ -5,7 +5,7 @@ import { Token } from '../models/user/Token'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import {  map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -15,19 +15,18 @@ import {  map } from 'rxjs/operators';
 
 export class UserService {
 
-  apiURL = 'http://localhost:8080/';
+  apiURL = 'https://springboot-postres-api.onrender.com/';
 
   constructor(
     private http: HttpClient,
-  )
-  {
+  ) {
 
   }
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin':'*'
+      'Access-Control-Allow-Origin': '*'
 
     })
   }
@@ -38,31 +37,31 @@ export class UserService {
 
 
     const body = {
-             username: myCredential.email,
-             password : myCredential.password
-          };
+      username: myCredential.email,
+      password: myCredential.password
+    };
 
     console.log(body)
 
     var myToken = new Token();
 
     return this.http.post(this.apiURL + 'api/auth/signin', body, this.httpOptions)
-    .pipe(
+      .pipe(
         catchError(this.handleError)
-    );
+      );
 
-  /*  .subscribe( (data : any)  => {
-        console.log(data);
-        myToken.accessToken = data.accessToken;
-     })
-*/
+    /*  .subscribe( (data : any)  => {
+          console.log(data);
+          myToken.accessToken = data.accessToken;
+       })
+  */
 
-   // return myToken;
+    // return myToken;
   }
 
 
   createUser(myUser: User): User {
-console.log("email ... " + myUser.email);
+    console.log("email ... " + myUser.email);
     console.log("password ... " + myUser.password);
 
     var myNewUser = new User();
@@ -72,36 +71,35 @@ console.log("email ... " + myUser.email);
     myNewUser.id = 0;
 
 
-    if ( myNewUser.id != 0 )
-    {
-       console.log("Success " + myNewUser.id);
-       myNewUser.id = 1; // Success
-       myNewUser.email = myUser.email;
-       myNewUser.firstName = myUser.firstName;
-       myNewUser.lastName = myUser.lastName;
-       myNewUser.password = myUser.password;
+    if (myNewUser.id != 0) {
+      console.log("Success " + myNewUser.id);
+      myNewUser.id = 1; // Success
+      myNewUser.email = myUser.email;
+      myNewUser.firstName = myUser.firstName;
+      myNewUser.lastName = myUser.lastName;
+      myNewUser.password = myUser.password;
 
     }
     else {
-       console.log("Error" + myNewUser.id);
+      console.log("Error" + myNewUser.id);
 
-       myNewUser.id = 0; // Error
+      myNewUser.id = 0; // Error
     }
 
-   return myNewUser;
+    return myNewUser;
 
 
   }
 
 
-  resetPassword(email : String, password : String, token : String) : String {
-   // call reset password API
+  resetPassword(email: String, password: String, token: String): String {
+    // call reset password API
 
-   var isResetPassword = 1;
+    var isResetPassword = 1;
 
-   this.destroyToken(token);
+    this.destroyToken(token);
 
-   return "" + isResetPassword;
+    return "" + isResetPassword;
 
   }
 
@@ -123,69 +121,68 @@ console.log("email ... " + myUser.email);
 
   }
 
-  sendEmail(email: String, urlReset: String) : String {
+  sendEmail(email: String, urlReset: String): String {
 
-   var emailSuccess = 0;
+    var emailSuccess = 0;
 
-   // send email using SMTP (gmail, outlook..)
+    // send email using SMTP (gmail, outlook..)
 
-   // email sent
-   emailSuccess = 1;
-   console.log('sent to :' + email);
-   console.log('url : ' + urlReset);
+    // email sent
+    emailSuccess = 1;
+    console.log('sent to :' + email);
+    console.log('url : ' + urlReset);
 
-   return "" + emailSuccess;
+    return "" + emailSuccess;
 
   }
-  createUrlReset(email: String) : String {
+  createUrlReset(email: String): String {
     var myUrlReset = "" +
-        this.createBaseURL() +
-        "/" +
-        email +
-        "/" +
-        this.createTokenReset(email)
+      this.createBaseURL() +
+      "/" +
+      email +
+      "/" +
+      this.createTokenReset(email)
 
-     return myUrlReset;
+    return myUrlReset;
   }
 
-  createBaseURL() : String {
+  createBaseURL(): String {
 
-   // call process to create base URL
+    // call process to create base URL
     var baseURL = "http://localhost:4200/reset-password";
 
     return baseURL;
   }
 
-  createTokenReset(email: String) : String {
+  createTokenReset(email: String): String {
     // JWT create a token to encrypt email
-    var SECRET_KEY = "i-love-adsoftsito";
+    var SECRET_KEY = "anderluunaanderluuunaanderluunaanderluunaanderluuunaanderluunaanderluunaanderluuunaanderluunaanderluunaanderluuunaanderluuna";
 
-    var myToken = "lkjlskiei8093wjdjde9203394"
+    var myToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRlcmFydHVyb2x1dW5hIiwiaWF0IjoxNzUwMDQyNzY4LCJleHAiOjE3NTAxMjkxNjh9.RonWWnhL9hAkvs2IMif-n2Ovk_2bs2Jv-"
 
     return myToken;
   }
 
 
-  validateUser(email: String ) : User {
+  validateUser(email: String): User {
 
     // call fake query api by email
 
     var myUser = new User();
 
     // Success, email valid
-    if ( email == "adsoft@live.com.mx" )
-    {
-       console.log("Success " + myUser.id);
-       myUser.id = 1; // Success
-       myUser.email = email;
-       myUser.firstName = "Adolfo";
-       myUser.lastName = "Centeno";
-       myUser.password = "";
+    if (email == "anderluuna96@gmail.com ") {
+      console.log("Success " + myUser.id);
+      myUser.id = 1; // Success
+      myUser.email = email;
+      myUser.firstName = "Ander";
+      myUser.lastName = "Luna";
+      myUser.password = "";
     }
     else {
-       console.log("Error" + myUser.id);
+      console.log("Error" + myUser.id);
 
-       myUser.id = 0; // Error
+      myUser.id = 0; // Error
     }
 
     return myUser;
@@ -194,18 +191,18 @@ console.log("email ... " + myUser.email);
 
 
 
-  validateToken(email: String, token: String) : String {
+  validateToken(email: String, token: String): String {
 
     // call api to validate token
     // success
     console.log('validating token ... ' + token);
 
     var validToken = 1;
-    return ""+validToken;
+    return "" + validToken;
 
   }
 
-  destroyToken(token: String) : String {
+  destroyToken(token: String): String {
 
     // call api to destroy token
     var istokenDestroyed = 1;
@@ -214,11 +211,11 @@ console.log("email ... " + myUser.email);
   }
 
 
- // Error handling
+  // Error handling
 
-  handleError(error : any) {
+  handleError(error: any) {
     let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
+    if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
     } else {
@@ -228,7 +225,7 @@ console.log("email ... " + myUser.email);
     console.log(errorMessage);
     window.alert(errorMessage);
     return throwError(errorMessage);
- }
+  }
 
 
 }
