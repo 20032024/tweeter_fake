@@ -1,0 +1,156 @@
+/* Container Principal */
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100vh;
+  padding: 20px;
+}
+
+/* Sidebar de navegación */
+.sidebar {
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #1da1f2;
+  padding: 20px;
+  color: white;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+}
+
+.menu-lateral {
+  margin-top: 30px;
+}
+
+.menu-lateral ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-lateral li {
+  margin: 15px 0;
+}
+
+.menu-lateral a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.menu-lateral a:hover {
+  text-decoration: underline;
+}
+
+/* Contenedor de los tweets */
+.content {
+  margin-left: 220px;
+  width: calc(100% - 220px);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Formulario para crear tweet */
+.tweet-form-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.tweet-form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.tweet-form input,
+.tweet-form select,
+.tweet-form button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.tweet-form button {
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.tweet-form button:hover {
+  background-color: #0d85b8;
+}
+
+/* Lista de Tweets */
+.tweets-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.tweet {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reactions button {
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.reactions button:hover {
+  background-color: #0d85b8;
+}
+
+.comments {
+  margin-top: 20px;
+}
+
+.comment {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nuevo-comentario input {
+  width: calc(100% - 120px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.nuevo-comentario button {
+  padding: 10px;
+  background-color: #1da1f2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nuevo-comentario button:hover {
+  background-color: #0d85b8;
+}

@@ -1,0 +1,17 @@
+<div class="create-postre-form">
+  <h2>Crear Nuevo Postre</h2>
+<form (ngSubmit)="createPostre()">
+  <label for="name">Nombre:</label>
+  <input type="text" id="name" [(ngModel)]="postre.name" name="name" required />
+
+  <label for="description">Descripción:</label>
+  <input type="text" id="description" [(ngModel)]="postre.description" name="description" required />
+
+  <label for="category">Categoría:</label>
+  <select id="category" [(ngModel)]="postre.categoryId" name="category" required>
+    <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+  </select>
+
+  <button type="submit">Crear Postre</button>
+</form>
+</div>

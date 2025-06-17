@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { StorageService } from "../services/storage.service";
+import { TweetCommentRequest } from '../models/comments/TweetComment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,58 +12,62 @@ import { StorageService } from "../services/storage.service";
 export class TweetService {
 
   apiURL = 'http://localhost:8080/';
-  token='';
+  token: string = '';
+
   constructor(
     private http: HttpClient,
-    private storageService : StorageService)
-  {
-       this.token = this.storageService.getSession("token");
-       console.log(this.token);
-
+    private storageService: StorageService) {
+    this.token = this.storageService.getSession("token");
+    console.log("mi token", this.token);
+    if (!this.token) {
+      console.error('Token no disponible');
+    }
   }
+
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin':'*',
-      'Authorization':'Bearer '  + this.token
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': 'Bearer ' + this.token
     })
   }
 
-  errorMessage = "";
 
+  errorMessage = '';
+  getHttpOptions() {
+    const token = this.storageService.getSession('token');
+    return {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      }),
+    };
 
-  getTweets(): Observable<Tweet> {
-    console.log("tweets: " + this.apiURL+ 'api/tweets/all');
-    return this.http.get<Tweet>(this.apiURL + 'api/tweets/all', this.httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
   }
 
-  postTweet(myTweet: String) {
 
-
-    const body = {
-             tweet: myTweet,
-          };
-
-    console.log(body)
-
-
-    return this.http.post(this.apiURL + 'api/tweets/create', body, this.httpOptions)
-    .pipe(
+  getTweets(): Observable<Tweet[]> {
+    console.log("tweets: " + this.apiURL + 'api/tweets/all');
+    return this.http.get<Tweet[]>(this.apiURL + 'api/tweets/all', this.httpOptions)
+      .pipe(
+        retry(1),
         catchError(this.handleError)
-    );
-
+      );
   }
 
+  postTweet(newTweet: Tweet): Observable<any> {
 
-   // Error handling
-  handleError(error : any) {
+    return this.http.post(this.apiURL + 'api/tweets/create', newTweet, this.getHttpOptions())
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // Error handling
+  handleError(error: any) {
     let errorMessage = '';
-    if(error.error instanceof ErrorEvent) {
+    if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
     } else {
@@ -72,6 +77,18 @@ export class TweetService {
     console.log(errorMessage);
     window.alert(errorMessage);
     return throwError(errorMessage);
- }
+  }
+
+  postCommenter(comentario: { content: string; tweetId: number }): Observable<any> {
+    return this.http.post(this.apiURL + 'api/comments/create', comentario, this.getHttpOptions())
+      .pipe(catchError(this.handleError));
+  }
+
+  getComentariosPorTweet(tweetId: number): Observable<any[]> {
+    return this.http.get<any[]>(this.apiURL + `api/comments/tweet/${tweetId}`, this.getHttpOptions())
+      .pipe(catchError(this.handleError));
+  }
+
+
 
 }

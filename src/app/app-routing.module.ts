@@ -6,14 +6,17 @@ import { LandingPageComponent } from "./landing-page/landing-page.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { NewUserComponent } from "./new-user/new-user.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { CategoryListComponent } from './category-list/category-list.component';
+
 
 const routes: Routes = [
- { path: '', component: LandingPageComponent},
- { path: 'home', component: HomeComponent },
- { path: 'login', component: LoginComponent },
- { path: 'forgot-password', component: ForgotPasswordComponent },
- { path: 'newuser', component: NewUserComponent },
- { path: 'reset-password/:email/:token', component: ResetPasswordComponent },
+  { path: '', component: LandingPageComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'newuser', component: NewUserComponent },
+  { path: 'reset-password/:email/:token', component: ResetPasswordComponent },
+  { path: 'pagina-principal/categorias', component: CategoryListComponent },
 ];
 
 @NgModule({
