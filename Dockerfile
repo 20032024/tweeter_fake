@@ -11,7 +11,7 @@ RUN npm run build --prod
 FROM nginx:alpine
 
 #
-COPY --from=build /app/dist/helicopterostweet/browser /usr/share/nginx/html
+COPY --from=build /app/dist/tweeter/browser /usr/share/nginx/html
 
 # Copia configuración de nginx que permite rutas Angular (SPA)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
