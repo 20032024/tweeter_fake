@@ -4,21 +4,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { StorageService } from "../services/storage.service";
-import { TweetCommentRequest } from '../models/comments/TweetComment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TweetService {
 
-  apiURL = 'https://spring-boot-p-latest.onrender.com/';
+  apiURL = 'https://spring-boot-imyt-tweeter-postres.onrender.com/';
   token: string = '';
 
   constructor(
     private http: HttpClient,
     private storageService: StorageService) {
     this.token = this.storageService.getSession("token");
-    console.log("mi token", this.token);
+    console.log("my token", this.token);
     if (!this.token) {
       console.error('Token no disponible');
     }
@@ -46,9 +45,9 @@ export class TweetService {
 
   }
 
-
   getTweets(): Observable<Tweet[]> {
     console.log("tweets: " + this.apiURL + 'api/tweets/all');
+
     return this.http.get<Tweet[]>(this.apiURL + 'api/tweets/all', this.httpOptions)
       .pipe(
         retry(1),
@@ -77,16 +76,6 @@ export class TweetService {
     console.log(errorMessage);
     window.alert(errorMessage);
     return throwError(errorMessage);
-  }
-
-  postCommenter(comentario: { content: string; tweetId: number }): Observable<any> {
-    return this.http.post(this.apiURL + 'api/comments/create', comentario, this.getHttpOptions())
-      .pipe(catchError(this.handleError));
-  }
-
-  getComentariosPorTweet(tweetId: number): Observable<any[]> {
-    return this.http.get<any[]>(this.apiURL + `api/comments/tweet/${tweetId}`, this.getHttpOptions())
-      .pipe(catchError(this.handleError));
   }
 
 

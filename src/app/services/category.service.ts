@@ -10,7 +10,7 @@ import { StorageService } from "../services/storage.service";
 })
 export class CategoryService {
 
-  private apiUrl = 'https://springboot-postres-api.onrender.com/api/categories/'; // Asegúrate de que esta URL es la correcta
+  private apiUrl = 'https://spring-boot-imyt-tweeter-postres.onrender.com/api/categories/'; // Asegúrate de que esta URL es la correcta
 
   constructor(private http: HttpClient) { }
 

@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators';
 
 export class UserService {
 
-  apiURL = 'https://springboot-postres-api.onrender.com/';
+  apiURL = 'https://spring-boot-imyt-tweeter-postres.onrender.com/';
 
   constructor(
     private http: HttpClient,
@@ -38,7 +38,8 @@ export class UserService {
 
     const body = {
       username: myCredential.email,
-      password: myCredential.password
+      password: myCredential.password,
+
     };
 
     console.log(body)
@@ -60,35 +61,16 @@ export class UserService {
   }
 
 
-  createUser(myUser: User): User {
-    console.log("email ... " + myUser.email);
-    console.log("password ... " + myUser.password);
+  createUser(myUser: User): Observable<User> {
+    const myNewUser = {
+      ...myUser,
+      role: myUser.role.length > 0 ? myUser.role : ['user'] // Asignamos un rol por defecto si no se pasa ninguno
+    };
 
-    var myNewUser = new User();
-
-    // call fake api - create user
-    // Success
-    myNewUser.id = 0;
-
-
-    if (myNewUser.id != 0) {
-      console.log("Success " + myNewUser.id);
-      myNewUser.id = 1; // Success
-      myNewUser.email = myUser.email;
-      myNewUser.firstName = myUser.firstName;
-      myNewUser.lastName = myUser.lastName;
-      myNewUser.password = myUser.password;
-
-    }
-    else {
-      console.log("Error" + myNewUser.id);
-
-      myNewUser.id = 0; // Error
-    }
-
-    return myNewUser;
-
-
+    return this.http.post<User>(this.apiURL + 'api/auth/signup', myNewUser, this.httpOptions)
+      .pipe(
+        catchError((error) => this.handleError(error))
+      );
   }
 
 
@@ -156,9 +138,9 @@ export class UserService {
 
   createTokenReset(email: String): String {
     // JWT create a token to encrypt email
-    var SECRET_KEY = "anderluunaanderluuunaanderluunaanderluunaanderluuunaanderluunaanderluunaanderluuunaanderluunaanderluunaanderluuunaanderluuna";
+    var SECRET_KEY = "i-love-adsoftsito";
 
-    var myToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbmRlcmFydHVyb2x1dW5hIiwiaWF0IjoxNzUwMDQyNzY4LCJleHAiOjE3NTAxMjkxNjh9.RonWWnhL9hAkvs2IMif-n2Ovk_2bs2Jv-"
+    var myToken = "lkjlskiei8093wjdjde9203394"
 
     return myToken;
   }
@@ -171,12 +153,12 @@ export class UserService {
     var myUser = new User();
 
     // Success, email valid
-    if (email == "anderluuna96@gmail.com ") {
+    if (email == "poke") {
       console.log("Success " + myUser.id);
       myUser.id = 1; // Success
       myUser.email = email;
-      myUser.firstName = "Ander";
-      myUser.lastName = "Luna";
+      myUser.username = "Poke";
+      // myUser.lastName = "Centeno";
       myUser.password = "";
     }
     else {
