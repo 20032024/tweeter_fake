@@ -14,53 +14,65 @@ import { StorageService } from "../services/storage.service";
 
 export class LoginComponent {
 
-    constructor( private userService: UserService,
-                 private storageService : StorageService,
-  	             private router: Router
-    )
-    { }
 
-    email : String = "anderarturoluuna";
-    password : String = "ander123";
-    myLogin = new Token();
+  // Toggle the visibility of the password
+  togglePasswordVisibility(passwordInput: HTMLInputElement): void {
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+    } else {
+      passwordInput.type = 'password';
+    }
+  }
 
-    callLogin() {
+  constructor(private userService: UserService,
+    private storageService: StorageService,
+    private router: Router
+  ) { }
 
-      //alert("login...");
+  email: String = "";
+  password: String = "";
 
-     var myCredential = new Credential();
+  myLogin = new Token();
 
-     myCredential.email = this.email;
-     myCredential.password = this.password;
+  callLogin() {
 
-     //this.myLogin = 
-     this.userService.postLogin(
-        myCredential
-       ).subscribe((data : any)  => {
-       console.log('user logged: ', JSON.stringify(data));
-       this.storageService.setSession("user", myCredential.email);
-       console.log("Token : " + JSON.parse(JSON.stringify(data)).accessToken);
+    //alert("login...");
 
-       this.storageService.setSession("token", JSON.parse(JSON.stringify(data)).accessToken);
+    var myCredential = new Credential();
 
-       this.router.navigate(['/home']);
+    myCredential.email = this.email;
+    myCredential.password = this.password;
+
+
+    //this.myLogin = 
+    this.userService.postLogin(
+      myCredential
+    ).subscribe((data: any) => {
+
+      console.log('user logged: ', JSON.stringify(data));
+      this.storageService.setSession("user", data.email);
+      //console.log("Token : " + JSON.parse(JSON.stringify(data)).accessToken);
+      this.storageService.setSession("userId", data.id);
+      console.log("id", data.id);
+      this.storageService.setSession("token", JSON.parse(JSON.stringify(data)).accessToken);
+
+      this.router.navigate(['/home']);
 
     }, (error) => {
-       console.log('there was an error sending the query', error);
-       myCredential.email = "";
-       myCredential.password = "";
-       alert(error);
-      });
+      console.log('there was an error sending the query', error);
+      myCredential.email = "";
+      myCredential.password = "";
+      alert(error);
+    });
 
 
 
-  
+
     if (this.myLogin.accessToken != "")
-        this.router.navigate(['/home']);
+      this.router.navigate(['/home']);
 
-    
+    console.log(this.myLogin);
 
-     console.log(this.myLogin);
+  }
 
-    }
 }

@@ -1,107 +1,140 @@
-/* Importación de la imagen de fondo */
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,700');
+/* Fondo de bienvenida con animación */
 
-body {
-  margin: 0;
-  font-family: 'Raleway', 'Arial';
-  color: white;
-  background-image: url('https://example.com/your-background-image.jpg');
-  /* Reemplaza por tu imagen de fondo */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+/* Contenedor de la contraseña */
+.password-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
+  position: relative;
 }
 
-.login-container {
-  background-color: white;
-  padding: 40px;
-  border-radius: 15px;
-  width: 100%;
-  max-width: 450px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-  /* Sombra suave */
+/* Estilo del botón para mostrar/ocultar la contraseña */
+.toggle-password-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #387c2a;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
 }
 
-h1 {
-  text-align: center;
-  font-size: 2.5em;
-  margin-bottom: 20px;
-  font-weight: bold;
-  color: #333;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-label {
-  font-size: 1.2em;
-  color: #333;
-}
-
-input {
-  padding: 12px;
-  font-size: 1.1em;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-input:focus {
-  border-color: #007bff;
-  /* Color del borde al hacer focus */
+.toggle-password-btn:focus {
   outline: none;
 }
 
-button {
+/* Contenedor del formulario de login */
+.login-content {
+  background-color: rgba(255, 255, 255, 0.85);
+  /* Fondo blanco translúcido */
+  padding: 3rem;
+  /* Aumentar padding para hacerlo más grande */
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  /* Aumentar el tamaño máximo */
+  width: 100%;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.login-content:hover {
+  transform: scale(1.05);
+}
+
+.login-content h2 {
+  font-size: 2.5rem;
+  /* Hacer el título más grande */
+  color: #387c2a;
+  /* Verde pastel */
+  margin-bottom: 1.5rem;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+  /* Aumentar espacio entre los campos */
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
   padding: 14px;
-  font-size: 1.2em;
-  color: white;
-  background-color: #007bff;
-  border: none;
+  /* Aumentar tamaño de los campos */
+  font-size: 1.1rem;
+  /* Aumentar tamaño de la fuente */
+  border: 1px solid #ddd;
   border-radius: 8px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #387c2a;
+  /* Verde pastel en foco */
+}
+
+.form-actions {
+  margin-top: 20px;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  /* Hacer el botón más grande */
+  background-color: #387c2a;
+  color: white;
+  font-size: 1.2rem;
+  /* Aumentar el tamaño del texto */
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-button:hover {
-  background-color: #0056b3;
-  /* Color más oscuro cuando se hace hover */
+.btn:hover {
+  background-color: #980000;
+  /* Rojo para hover */
+  transform: translateY(-2px);
 }
 
-.forgot-password {
-  font-size: 1em;
-  text-align: center;
+.create-account {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #333;
 }
 
-.forgot-password a {
-  color: #007bff;
+.create-account a {
+  color: #387c2a;
+  /* Verde pastel */
   text-decoration: none;
 }
 
-.forgot-password a:hover {
+.create-account a:hover {
   text-decoration: underline;
 }
 
-.signup-link {
-  font-size: 1em;
-  text-align: center;
-  margin-top: 10px;
-}
+/* Animación para el fondo */
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
 
-.signup-link a {
-  color: #007bff;
-  text-decoration: none;
-}
+  50% {
+    background-position: 100% 50%;
+  }
 
-.signup-link a:hover {
-  text-decoration: underline;
+  100% {
+    background-position: 0% 50%;
+  }
 }

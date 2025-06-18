@@ -14,9 +14,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryListComponent } from './category-list/category-list.component';
-import { PostresReactionsComponent } from './postres-reactions/postres-reactions.component';
 import { ReactionsComponent } from './reactions/reactions.component';
-import { PostresCommentsComponent } from './postres-comments/postres-comments.component';
 import { CommentsComponent } from './comments/comments.component';
 
 @NgModule({
@@ -30,9 +28,7 @@ import { CommentsComponent } from './comments/comments.component';
     TweetsComponent,
     HomeComponent,
     CategoryListComponent,
-    PostresReactionsComponent,
     ReactionsComponent,
-    PostresCommentsComponent,
     CommentsComponent
   ],
   imports: [

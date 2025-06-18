@@ -1,4 +1,9 @@
-export interface TweetCommentRequest {
-    tweetId: number;
+export interface TweetComment {
     content: string;
+    user: {
+        id: number;
+        username: string;
+    };
+    tweetId: number;
+    fechaCreacion: string;
 }

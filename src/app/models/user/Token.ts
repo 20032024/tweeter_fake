@@ -1,3 +1,4 @@
+
 export class Token {
     id: Number = 0;
     username: String = "";
@@ -6,4 +7,3 @@ export class Token {
     roles: Array<string> = [];
     accessToken: String = ""
 }
-

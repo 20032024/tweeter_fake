@@ -1,0 +1,80 @@
+/* Fondo de bienvenida */
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    background: linear-gradient(45deg, #ffd793, #ffe1c9);
+    background-size: 400% 400%;
+    animation: gradientBackground 15s ease infinite;
+}
+
+/* Contenedor de contenido */
+.welcome-content {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+}
+
+.welcome-content:hover {
+    transform: scale(1.05);
+}
+
+/* Estilo del título */
+.welcome-content h1 {
+    font-size: 3rem;
+    color: #000000;
+    margin-bottom: 1rem;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Estilo del mensaje */
+.welcome-content p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 2rem;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+}
+
+/* Botón de inicio de sesión */
+.welcome-buttons .button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #387c2a;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+
+.welcome-buttons .button:hover {
+    background-color: #980000;
+    transform: translateY(-2px);
+}
+
+/* Animación para el fondo */
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
