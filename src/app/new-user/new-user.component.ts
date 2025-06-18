@@ -10,27 +10,40 @@ import { Router } from '@angular/router';
 })
 export class NewUserComponent {
 
- constructor( private userService: UserService,
-	      private router: Router
-    )
- {
- }
 
- myPayloadUser = new User();
- myNewUser = new User();
 
- createUser() {
-   console.log(this.myPayloadUser);
+  // Toggle the visibility of the password
+  togglePasswordVisibility(passwordInput: HTMLInputElement): void {
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+    } else {
+      passwordInput.type = 'password';
+    }
+  }
+  constructor(private userService: UserService,
+    private router: Router
+  ) {
+  }
 
- this.myNewUser = this.userService.createUser(
-        this.myPayloadUser
-       );
+  myNewUser = new User();
 
- console.log(this.myNewUser);
+  createUser() {
+    // Validamos que el email, nombre y contraseña no estén vacíos
+    if (!this.myNewUser.email || !this.myNewUser.username || !this.myNewUser.password) {
+      console.error('Todos los campos son obligatorios.');
+      return;
+    }
 
- if (this.myNewUser.id != 0)
+    // Aquí se llama al servicio para crear un nuevo usuario
+    this.userService.createUser(this.myNewUser).subscribe({
+      next: (res) => {
+        console.log('Usuario creado:', res);
         this.router.navigate(['/login']);
-
- }
+      },
+      error: (err) => {
+        console.error('Error al crear usuario:', err);
+      }
+    });
+  }
 
 }

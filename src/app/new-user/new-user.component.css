@@ -1,108 +1,130 @@
-/* Importación de la imagen de fondo */
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,700');
-/* Estilo general para la página */
-body {
-  margin: 0;
-  font-family: 'Raleway', 'Arial', sans-serif;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: white;
-}
+/* Estilos para el contenedor del formulario de registro */
 
-/* Aplicamos la negrita a todo el texto dentro de la tabla */
-table {
-  width: 70%;
-  max-width: 1000px;
-  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-  table-layout: fixed;
-  font-weight: bold; /* Aquí aplicamos la negrita a todo el texto */
-}
 
-td {
-  padding: 15px;
-  vertical-align: middle;
-}
-
-td input, td button {
+/* Estilos para la tarjeta de registro */
+.register-card {
+  background-color: rgba(255, 255, 255, 0.85);
+  /* Fondo translúcido */
+  padding: 3rem;
+  /* Relleno grande */
+  border-radius: 20px;
+  /* Bordes redondeados */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
+  max-width: 600px;
+  /* Tamaño máximo */
   width: 100%;
-  padding: 12px;
-  font-size: 1.1em;
-  border: 1px solid #ccc;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Efecto al pasar el mouse */
+.register-card:hover {
+  transform: scale(1.05);
+}
+
+/* Título de la página */
+.register-card .logo {
+  font-size: 2.5rem;
+  /* Hacer el título grande */
+  color: #387c2a;
+  /* Verde pastel */
+  margin-bottom: 1.5rem;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Estilo para los campos de entrada */
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Estilo de los campos de entrada */
+.form-group input {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  box-sizing: border-box;
-  margin-bottom: 15px;
-}
-
-td input:focus, td button:hover {
-  border-color: #007bff;
   outline: none;
+  transition: border 0.3s;
 }
 
-button {
-  background-color: #007bff;
+/* Estilo cuando el campo está en foco */
+.form-group input:focus {
+  border-color: #387c2a;
+}
+
+/* Ayuda debajo de la contraseña */
+.hint {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Error al validar los campos */
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Estilo del botón */
+.register-button {
+  width: 100%;
+  padding: 14px;
+  background-color: #387c2a;
   color: white;
-  font-size: 1.2em;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-button:hover {
-  background-color: #0056b3;
+/* Efecto al pasar el mouse en el botón */
+.register-button:hover {
+  background-color: #980000;
+  /* Rojo para hover */
+  transform: translateY(-2px);
 }
 
-a {
-  color: #007bff;
-  text-decoration: none;
-  font-size: 1em;
+/* Estilo para los links de la parte inferior */
+.footer-links {
+  margin-top: 20px;
 }
 
-/* Especificamente quitar la negrita del enlace "cancel" */
-a.routerLink {
-  font-weight: normal; /* Aquí desactivamos la negrita solo en el enlace de "cancel" */
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Estilo para los enlaces de "Olvidé mi contraseña" y "Crear cuenta" */
-.forgot-password {
-  font-size: 1em;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.signup-link {
-  font-size: 1em;
-  text-align: center;
-  margin-top: 10px;
-}
-
-.signup-link a {
-  color: #007bff;
+.footer-links a {
+  color: #387c2a;
+  font-size: 1rem;
   text-decoration: none;
 }
 
-.signup-link a:hover {
+.footer-links a:hover {
   text-decoration: underline;
 }
 
-/* Estilo para los campos en fila */
-tr {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
+/* Animación para el fondo */
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
 
-tr td {
-  width: 45%;
-  padding: 10px;
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }

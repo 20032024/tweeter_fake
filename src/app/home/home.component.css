@@ -1,156 +1,207 @@
-/* Container Principal */
+/* Fondo de la página */
 .main-container {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  padding: 20px;
+  background: linear-gradient(45deg, #ffd793, #ffe1c9);
+  /* Fondo suave con gradiente */
   height: 100vh;
-  padding: 20px;
+  overflow-x: hidden;
 }
 
-/* Sidebar de navegación */
-.sidebar {
-  width: 200px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background-color: #1da1f2;
-  padding: 20px;
-  color: white;
-}
-
-.menu-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 24px;
-}
-
-.menu-lateral {
-  margin-top: 30px;
-}
-
-.menu-lateral ul {
-  list-style: none;
-  padding: 0;
-}
-
-.menu-lateral li {
-  margin: 15px 0;
-}
-
-.menu-lateral a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.menu-lateral a:hover {
-  text-decoration: underline;
-}
-
-/* Contenedor de los tweets */
-.content {
-  margin-left: 220px;
-  width: calc(100% - 220px);
-  padding: 20px;
-  overflow-y: auto;
-}
-
-/* Formulario para crear tweet */
+/* Formulario para crear un tweet (izquierda) */
 .tweet-form-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
+  width: 48%;
+  /* Ocupa casi la mitad de la pantalla */
+  background-color: rgba(255, 255, 255, 0.85);
+  /* Fondo translúcido */
+  padding: 3rem;
+  /* Aumentar padding para hacerlo más grande */
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  height: 90vh;
+  /* Establece una altura del 90% de la pantalla */
+  overflow-y: auto;
+  /* Asegura que los contenidos largos no se salgan */
+  margin-top: 10px;
+  /* Un poco de margen superior */
 }
 
-.tweet-form {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px;
-}
-
-.tweet-form input,
-.tweet-form select,
-.tweet-form button {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.tweet-form button {
-  background-color: #1da1f2;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.tweet-form button:hover {
-  background-color: #0d85b8;
-}
-
-/* Lista de Tweets */
-.tweets-list {
+.tweet-form-card {
   display: flex;
   flex-direction: column;
 }
 
+.tweet-form-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group select {
+  padding: 14px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #387c2a;
+  /* Verde pastel en foco */
+}
+
+.form-actions {
+  margin-top: 20px;
+}
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #387c2a;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn:hover {
+  background-color: #980000;
+  transform: translateY(-2px);
+}
+
+/* Contenedor de tweets (derecha) */
+.tweets-list {
+  width: 48%;
+  /* Ocupa casi la mitad de la pantalla */
+  background-color: rgba(255, 255, 255, 0.85);
+  /* Fondo translúcido */
+  padding: 3rem;
+  /* Aumentar padding para hacerlo más grande */
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  height: 90vh;
+  /* Establece una altura del 90% de la pantalla */
+  overflow-y: auto;
+  margin-top: 10px;
+  /* Un poco de margen superior */
+}
+
+/* Estilos para los tweets */
 .tweet {
-  background-color: white;
-  padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tweet p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.tweet em {
+  font-style: italic;
+  color: #387c2a;
+}
+
+/* Reacciones */
+.reactions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .reactions button {
-  background-color: #1da1f2;
+  padding: 10px 20px;
+  background-color: #387c2a;
   color: white;
+  font-size: 1rem;
   border: none;
-  padding: 10px;
-  margin: 5px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 .reactions button:hover {
-  background-color: #0d85b8;
+  background-color: #980000;
 }
 
-.comments {
+/* Comentarios */
+.comments-section {
   margin-top: 20px;
 }
 
-.comment {
-  background-color: #f9f9f9;
-  padding: 10px;
+.comments-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.comments-section li {
   margin-bottom: 10px;
-  border-radius: 5px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-.nuevo-comentario input {
-  width: calc(100% - 120px);
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.comment-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-.nuevo-comentario button {
-  padding: 10px;
-  background-color: #1da1f2;
+.comment-form input {
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.comment-form button {
+  padding: 12px;
+  background-color: #387c2a;
   color: white;
+  font-size: 1rem;
+  font-weight: bold;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-.nuevo-comentario button:hover {
-  background-color: #0d85b8;
+.comment-form button:hover {
+  background-color: #980000;
+  transform: translateY(-2px);
+}
+
+/* Reacciones a los tweets */
+.reactions-section {
+  margin-top: 20px;
+}
+
+.reactions-section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.reactions-section li {
+  font-size: 1rem;
+  color: #333;
 }

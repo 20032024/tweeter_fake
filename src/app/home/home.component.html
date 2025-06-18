@@ -1,89 +1,90 @@
 <div class="main-container">
-  <!-- Menú de hamburguesa -->
-  <div class="sidebar">
-    <button class="menu-btn" (click)="toggleMenu()">☰</button>
-    <div [class.abierto]="menuAbierto" class="menu-lateral">
-      <ul>
-        <li><a routerLink="/pagina-principal/categorias"> POSTRES </a></li>
-        <li><a href="#">Opción 2</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Contenedor principal -->
-  <div class="content">
-    <!-- Formulario de creación de tweet centrado -->
-    <div class="tweet-form-container">
-      <div class="tweet-form">
-        <form (ngSubmit)="addTweet()">
+  <!-- Formulario para crear un tweet (izquierda) -->
+  <div class="tweet-form-container">
+    <div class="tweet-form-card">
+      <form (ngSubmit)="addTweet()">
+        <div class="input-group">
+          <label for="tweetText">Escribe tu tweet aquí...</label>
           <input type="text" class="txt" name="tweetText" placeholder="Escribe tu tweet aquí..." [(ngModel)]="tweetText"
             required />
+        </div>
 
-          <!-- Categoría del tweet -->
+        <div class="input-group">
           <label for="category">Categoría:</label>
           <select name="category" [(ngModel)]="selectedCategory" required>
             <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
           </select>
+        </div>
 
-          <!-- Nombre del postre -->
+        <div class="input-group">
           <label for="namePostre">Nombre del Postre:</label>
           <input id="namePostre" name="namePostre" [(ngModel)]="tweetNamePostre"
             placeholder="Escribe el nombre del postre" required />
+        </div>
 
-          <!-- Ingredientes -->
+        <div class="input-group">
           <label for="ingredientes">Ingredientes:</label>
           <input id="ingredientes" name="ingredientes" [(ngModel)]="tweetIngredientes"
             placeholder="Escribe los ingredientes" required />
+        </div>
 
-          <!-- Tipo de postre -->
+        <div class="input-group">
           <label for="tipoPostre">Tipo de Postre:</label>
           <input id="tipoPostre" name="tipoPostre" [(ngModel)]="tweetTipoPostre" placeholder="Escribe el tipo de postre"
             required />
+        </div>
 
-          <!-- Botón de submit -->
+        <div class="form-actions">
           <button type="submit" class="btn">Tweet</button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
+  </div>
 
-    <!-- Mostrar Tweets -->
-    <div class="tweets-list">
-      <h3>Tweets sobre Postres</h3>
-      <div *ngFor="let tweet of tweets" class="tweet">
-        <p>{{ tweet.tweet }}</p>
-        <p><em>Postre: {{ tweet.namePostre }}</em></p>
-        <p><em>Ingredientes: {{ tweet.ingredientes }}</em></p>
-        <p><em>Tipo de postre: {{ tweet.tipoPostre }}</em></p>
+  <!-- Contenedor de los Tweets (derecha) -->
+  <div class="tweets-list">
+    <h3>Tweets sobre Postres</h3>
+    <div *ngFor="let tweet of tweets" class="tweet">
+      <p>{{ tweet.tweet }} - {{tweet.id}}</p>
+      <p><em>Postre: {{ tweet.namePostre }}</em></p>
+      <p><em>Ingredientes: {{ tweet.ingredientes }}</em></p>
+      <p><em>Tipo de postre: {{ tweet.tipoPostre }}</em></p>
 
-        <!-- Reacciones -->
-        <div class="reactions">
-          <button (click)="addReaction(tweet.id, 1)">Like</button>
-          <button (click)="addReaction(tweet.id, 2)">Love</button>
-          <button (click)="addReaction(tweet.id, 3)">Hate</button>
-          <button (click)="addReaction(tweet.id, 4)">Sad</button>
-          <button (click)="addReaction(tweet.id, 5)">Angry</button>
-        </div>
+      <!-- Reacciones -->
+      <div class="reactions">
+        <button (click)="addReaction(tweet.id, 1)">Like</button>
+        <button (click)="addReaction(tweet.id, 2)">Love</button>
+        <button (click)="addReaction(tweet.id, 3)">Hate</button>
+        <button (click)="addReaction(tweet.id, 4)">Sad</button>
+        <button (click)="addReaction(tweet.id, 5)">Angry</button>
+      </div>
 
-        <!-- Comentarios -->
-        <div class="comments">
-          <h4>Comentarios</h4>
-          <div *ngIf="tweet.comentarios && tweet.comentarios.length > 0; else sinComentarios">
-            <div *ngFor="let comment of tweet.comentarios" class="comment">
-              <p><strong>{{ comment.user.username }}:</strong> {{ comment.content }}</p>
-              <p><em>{{ comment.fechaCreacion | date:'short' }}</em></p>
-            </div>
-          </div>
-          <ng-template #sinComentarios>
-            <p>No hay comentarios aún.</p>
-          </ng-template>
-        </div>
+      <!-- Comentarios -->
+      <div *ngIf="commentsByTweet[tweet.id] && commentsByTweet[tweet.id].length > 0" class="comments-section">
+        <p><strong>Comentarios:</strong></p>
+        <ul>
+          <li *ngFor="let comment of commentsByTweet[tweet.id]">
+            <p>{{ comment.user.username }}</p>
+            {{ comment.content }} - {{comment.fechaCreacion}}
+          </li>
+        </ul>
+      </div>
 
-        <!-- Agregar nuevo comentario -->
-        <div class="nuevo-comentario">
-          <input type="text" [(ngModel)]="tweet.nuevoComment" [name]="'comentario' + tweet.id"
-            placeholder="Escribe un comentario..." />
-          <button (click)="crearComentario(tweet)">Agregar Comentario</button>
-        </div>
+      <!-- Crear comentario -->
+      <div class="comment-form">
+        <input class="txt" type="text" [(ngModel)]="newCommentContent[tweet.id]" name="comment-{{tweet.id}}"
+          placeholder="Escribe un comentario..." />
+        <button (click)="createComment(tweet.id)">Comentar</button>
+      </div>
+
+      <!-- Reacciones -->
+      <div *ngIf="reactionsByTweet[tweet.id] && reactionsByTweet[tweet.id].length > 0" class="reactions-section">
+        <p><strong>Reacciones:</strong></p>
+        <ul>
+          <li *ngFor="let entry of getReactionCounts(tweet.id) | keyvalue">
+            {{ entry.key }}: {{ entry.value }}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
