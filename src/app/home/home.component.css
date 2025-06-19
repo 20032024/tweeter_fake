@@ -205,3 +205,13 @@
   font-size: 1rem;
   color: #333;
 }
+
+.tweet-image {
+  max-width: 100%;
+  /* Para asegurarte de que la imagen no se desborde */
+  height: auto;
+  /* Mantener las proporciones de la imagen */
+  border-radius: 8px;
+  /* Bordes redondeados si lo deseas */
+  margin-top: 1rem;
+}

@@ -9,6 +9,7 @@ export class Tweet {
   categoria: Category = new Category();  // Aquí agregamos la referencia a Category
   comentarios?: { id: number; content: string; user: { username: string }; fechaCreacion: string }[] = [];
   nuevoComment?: string = '';
+  imagen_url: string = "";
 
   constructor(
     id: number,
@@ -16,7 +17,8 @@ export class Tweet {
     ingredientes: string,
     namePostre: string,
     tipoPostre: string,
-    categoria: Category
+    categoria: Category,
+    imagenUrl: string
   ) {
     this.id = id;
     this.tweet = tweet;
@@ -26,5 +28,6 @@ export class Tweet {
     this.categoria = categoria;
     this.comentarios = [];
     this.nuevoComment = '';
+    this.imagen_url = imagenUrl;
   }
 }

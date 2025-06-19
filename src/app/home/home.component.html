@@ -34,6 +34,13 @@
             required />
         </div>
 
+        <!-- Campo para la URL de la imagen -->
+        <div class="input-group">
+          <label for="imagen_url">URL de la Imagen:</label>
+          <input id="imagen_url" name="imagen_url" [(ngModel)]="tweetImagen_url"
+            placeholder="Ingresa la URL de la imagen" />
+        </div>
+
         <div class="form-actions">
           <button type="submit" class="btn">Tweet</button>
         </div>
@@ -49,6 +56,11 @@
       <p><em>Postre: {{ tweet.namePostre }}</em></p>
       <p><em>Ingredientes: {{ tweet.ingredientes }}</em></p>
       <p><em>Tipo de postre: {{ tweet.tipoPostre }}</em></p>
+
+      <!-- Mostrar la imagen del tweet si existe -->
+      <div *ngIf="tweet.imagen_url">
+        <img [src]="tweet.imagen_url" alt="Imagen del tweet" class="tweet-image">
+      </div>
 
       <!-- Reacciones -->
       <div class="reactions">

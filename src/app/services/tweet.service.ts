@@ -10,7 +10,7 @@ import { StorageService } from "../services/storage.service";
 })
 export class TweetService {
 
-  apiURL = 'https://spring-boot-imyt-tweeter-postres.onrender.com/';
+  apiURL = 'http://localhost:8080/';
   token: string = '';
 
   constructor(

@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators';
 
 export class UserService {
 
-  apiURL = 'https://spring-boot-imyt-tweeter-postres.onrender.com/';
+  apiURL = 'http://localhost:8080/';
 
   constructor(
     private http: HttpClient,

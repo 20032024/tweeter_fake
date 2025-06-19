@@ -28,6 +28,7 @@ export class HomeComponent {
   categories: Category[] = [];
   tweets: Tweet[] = [];
   menuAbierto = false; // Aquí se gestiona el estado del menú
+  tweetImagen_url: string = '';
 
   reactionsByTweet: { [tweetId: number]: TweetReaction[] } = {};
   commentsByTweet: { [tweetId: number]: TweetComment[] } = {};
@@ -168,7 +169,9 @@ export class HomeComponent {
       ingredientes: this.tweetIngredientes,
       namePostre: this.tweetNamePostre,
       tipoPostre: this.tweetTipoPostre,
-      categoria: this.selectedCategory  // <--- manda el objeto completo
+      categoria: this.selectedCategory, // <--- manda el objeto completo
+      imagen_url: this.tweetImagen_url
+
     };
     this.tweetService.postTweet(newTweet).subscribe((response: any) => {
       this.getTweets(); // Cargar los tweets después de crear uno nuevo
